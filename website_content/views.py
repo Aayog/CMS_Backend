@@ -1,4 +1,6 @@
 from rest_framework import generics
+from contextlib import contextmanager
+
 from .models import (
     NavbarItem,
     Footer,
@@ -27,6 +29,7 @@ from .serializers import (
     EventSerializer,
     AnalyticsSerializer,
 )
+from django.utils.translation import get_language, activate
 
 class NavbarItemList(generics.ListAPIView):
     queryset = NavbarItem.objects.all()
@@ -39,9 +42,16 @@ class FooterList(generics.ListAPIView):
 
 
 class AboutUsList(generics.ListAPIView):
-    queryset = AboutUs.objects.all()
+    # queryset = AboutUs.objects.all()
     serializer_class = AboutUsSerializer
+    def get_queryset(self):
+        language = self.request.query_params.get('lang', None)
 
+        if language:
+            with use_language(language):
+                return AboutUs.objects.all()
+        else:
+            return AboutUs.objects.all()
 
 class BlogList(generics.ListAPIView):
     queryset = Blog.objects.all()
@@ -92,3 +102,13 @@ class EventList(generics.ListAPIView):
 class AnalyticsList(generics.ListAPIView):
     queryset = Analytics.objects.all()
     serializer_class = AnalyticsSerializer
+
+@contextmanager
+def use_language(language):
+    current_language = get_language()
+    try:
+        activate(language)
+        yield
+    finally:
+        activate(current_language)
+

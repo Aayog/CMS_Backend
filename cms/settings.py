@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "website_content",
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +134,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 JET_DEFAULT_THEME = 'default'  # Use the default theme
 JET_SIDE_MENU_COMPACT = True   # Use a compact side menu
 JET_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultIndexDashboard'  # Use the default dashboard
+
+#multilingual
+USE_I18N = True
+USE_L10N = True
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('ne', _('Nepali')),
+    ('zh-hans', _('Chinese')),
+]
+
+MODELTRANSLATION_LANGUAGES = ('en', 'ne', 'zh')
