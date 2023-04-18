@@ -28,7 +28,6 @@ from .serializers import (
     AnalyticsSerializer,
 )
 
-
 class NavbarItemList(generics.ListAPIView):
     queryset = NavbarItem.objects.all()
     serializer_class = NavbarItemSerializer

@@ -78,7 +78,6 @@ class AnalyticsAdmin(admin.ModelAdmin):
 #     extra = 0
 #     fk_name = 'blog'
 
-
 class BlogAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'created_at', 'updated_at')
     search_fields = ('title', 'slug', 'author')

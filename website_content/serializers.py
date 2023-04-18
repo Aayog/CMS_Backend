@@ -56,7 +56,6 @@ class ContactUsSerializer(serializers.ModelSerializer):
         model = ContactUs
         fields = ("name", "email", "subject", "message", "created_at")
 
-
 class FAQSerializer(serializers.ModelSerializer):
     class Meta:
         model = FAQ
@@ -73,7 +72,6 @@ class SocialMediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = SocialMedia
         fields = ("platform", "link")
-
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:

@@ -20,3 +20,4 @@ urlpatterns = [
     path("event/", views.EventList.as_view(), name="event-list"),
     path("analytics/", views.AnalyticsList.as_view(), name="analytics-list"),
 ]
+

@@ -1,13 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from autoslug import AutoSlugField
-# from django.contrib.sites.models import Site
-
 
 class NavbarItem(models.Model):
     title = models.CharField(max_length=200)
     link = models.CharField(max_length=200)
-
     def __str__(self):
         return self.title
 
